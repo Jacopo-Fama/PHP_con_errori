@@ -8,9 +8,7 @@ $result = calculateTotal(10, 20);
 
 echo "Totale: " . $result;
 
-echo $errore;
-
-if ($result > 0 {
+if ($result > 0) {
     echo "Risultato valido";
 }
 
