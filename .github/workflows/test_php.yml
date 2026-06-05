@@ -1,21 +1,25 @@
-name: PHP Syntax Check (PR Only)
-'on':
+name: PHP Syntax Check
+
+on:
   pull_request:
-    branches:
-      - main
-  push:
     branches:
       - main
 jobs:
   php-lint:
     name: Verifica Sintassi PHP
     runs-on: ubuntu-latest
+
     steps:
       - name: 1. Checkout del codice
         uses: actions/checkout@v4
+
       - name: 2. Configurazione ambiente PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+
       - name: 3. Esecuzione PHP Lint
-        run: 'find . -name "*.php" -exec php -l {} \;'
+        run: |
+          find . -name "*.php" -print0 | while IFS= read -r -d '' file; do
+            php -l "$file" || exit 1
+          done
