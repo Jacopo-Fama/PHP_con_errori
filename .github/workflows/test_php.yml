@@ -3,6 +3,9 @@ name: PHP Syntax Check (PR Only)
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
 jobs:
   php-lint:
     name: Verifica Sintassi PHP
